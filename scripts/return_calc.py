@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Mar 24 15:34:38 2019
-
-@author: Levi
-"""
 import sys
 import pandas as pd
 
+"""
+Usage: python3 return_calc.py <csv file> <start date> <end date>
+Date Format: year-month-day
+Example: python3 return_calc.py a.us.csv 1999-11-18 1999-11-19
+"""
 
 def main(argv):
     
