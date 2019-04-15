@@ -1,5 +1,5 @@
 # CSCI 4502
-## Team Mambers
+## Team Members
 Stephen Kay, Rachel Mamich, Levi Nickerson, Brandon Rajkowski
 
 ## Project Description
