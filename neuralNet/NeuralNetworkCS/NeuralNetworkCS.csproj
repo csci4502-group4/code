@@ -50,6 +50,9 @@
     <Compile Include="source\Network.cs" />
     <Compile Include="source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="source\StockDataForNetwork.cs" />
+    <Compile Include="source\StockDataPoint.cs" />
+    <Compile Include="source\StockDataSet.cs" />
     <Compile Include="source\StockDataUtility.cs" />
   </ItemGroup>
   <ItemGroup>

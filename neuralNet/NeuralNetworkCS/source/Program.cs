@@ -7,6 +7,7 @@ namespace NeuralNetworkCS
     {
         static void Main()
         {
+            // Load data from CSV.
             List<StockDataPoint> dataPoints = StockDataUtility.ReadStockFile(@"msft.us.csv");
             StockDataSet trainingSet = new StockDataSet(dataPoints, true);
             int testingSize = (int)(trainingSet.getSize() * 0.20f);
