@@ -84,18 +84,6 @@ namespace NeuralNetworkCS
             }
         }
 
-        public void SetOutputLayer(int y)
-        {
-            // Convert integer label to output vector.
-            for (int j = 0; j < vY.Count; j++)
-            {
-                if (j == y)
-                    vY[j] = 1f;
-                else
-                    vY[j] = 0f;
-            }
-        }
-
         public void SetOutputLayer(Vector<float> v)
         {
             v.CopyTo(vY);
