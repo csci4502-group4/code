@@ -19,11 +19,8 @@ namespace NeuralNetworkCS
         private int lastLayerIndex;
         private Activation activation;
 
-        public double Accuracy { get; set; }
-
         public Network(List<int> sizes, Activation a)
         {
-            Accuracy = 0d;
             vSizes = sizes;
             activation = a;
             lastLayerIndex = vSizes.Count - 1;
@@ -104,6 +101,9 @@ namespace NeuralNetworkCS
             }
         }
 
+        /// <summary>
+        /// Stochastic gradient descent learning algorithm.
+        /// </summary>
         public void SGD(ref StockDataSet trainingData, ref StockDataSet testingData, int epochs, int batchSize, float learningRate, bool output)
         {
             MathNet.Numerics.Control.UseSingleThread(); // Single thread is optimal over multithreading.
@@ -179,8 +179,6 @@ namespace NeuralNetworkCS
                     continue;
                 }
             }
-            //Console.WriteLine("{0} / {1}", correct, total);
-            this.Accuracy = (double)correct / (double)total;
             data.Reset();
             return correct;
         }
