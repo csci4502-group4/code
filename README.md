@@ -27,3 +27,8 @@ https://youtu.be/-J7mcpYVk-I
     PM> Install-Package MathNet.Numerics -Version 4.7.0
     ```
 The easiest way to build and run the neural network code is to install Visual Studio (https://visualstudio.microsoft.com/vs/community/).  With Visual Studio installed, ensure that .NET Core/Framework packages are installed.  Then install the MathNet.Numerics package using the Nuget package manager and the command above.  To the run code, simply use the Visual Studio GUI and press the `Run` button.
+
+
+## K-Means Clustering
+
+The easiest way to replicate our K-means clustering algorithm is to paste all of the individual python code files into a Jupyter notebook and then insert the database of your choice into the pandas_read_file line and analysis it through that avenue using the examples and comments provided in the individual code files
