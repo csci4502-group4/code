@@ -31,4 +31,4 @@ The easiest way to build and run the neural network code is to install Visual St
 
 ## K-Means Clustering
 
-The easiest way to replicate our K-means clustering algorithm is to paste all of the individual python code files into a Jupyter notebook and then insert the database of your choice into the pandas_read_file line and analysis it through that avenue using the examples and comments provided in the individual code files
+The easiest way to replicate our K-means clustering algorithm is to paste all of the individual python code files into a Jupyter notebook and then insert the database/file source of your choice into the pandas_read_file line and analysis it through that avenue using the examples and comments provided in the individual code files
