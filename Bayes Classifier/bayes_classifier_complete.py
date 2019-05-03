@@ -455,7 +455,7 @@ print(total_rise_prob)
 print(total_fall_prob)
         
 accuracy = accuracy_sum/test_length
-print("Shitty accuracy is....", accuracy)
+print("The Accuracy is....", accuracy)
      
         
         
