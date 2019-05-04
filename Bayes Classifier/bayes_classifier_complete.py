@@ -9,17 +9,22 @@ import pandas as pd
 import math
 from statistics import mean, stdev
 
+# Read the desired csv file
+# file needs to have been changed from .txt to .csv already
+# this can be done so using the textToCSV.py
 a = pd.read_csv("D:\School\Spring Semester\CSCI 4502 Data Mining\Project_Data\Stocks\\ge.us.csv")
 
+# Split up the data set
 length = len(a)
 train_length = int(length * .75)
 test_length = length - train_length
 
-
+# Create new dataframes to hold the rise and all tuples of the data
 rise = pd.DataFrame(columns={'Open', 'High', 'Low', 'Close', 'Volume'})
 fall = pd.DataFrame(columns={'Open', 'High', 'Low', 'Close', 'Volume'})
 total_prob_sum = 0
 
+# Compute the total rise and fall probabilities for the entire data set
 for i in range(length):
     if (a.iloc[i,4] - a.iloc[i,1] > 0):
         total_prob_sum = total_prob_sum + 1
@@ -27,6 +32,8 @@ for i in range(length):
 total_rise_prob = total_prob_sum/length
 total_fall_prob = 1 - total_rise_prob
 
+
+# Split up the training set into rise tuples and fall tuples
 for i in range(train_length):
     if (a.iloc[i,4] - a.iloc[i,1] > 0):
         rise = rise.append(a.loc[i])
@@ -37,7 +44,7 @@ for i in range(train_length):
         
 
 # SMA simple moving average
-# for closing prices
+# Equations can be found in the paper
 sma_rise = []  
 sma_fall = []
 
@@ -59,7 +66,8 @@ sma_rise_std = stdev(sma_rise)
 sma_fall_ave = mean(sma_fall)
 sma_fall_std = stdev(sma_fall)      
  
-# EMA   
+# EMA  
+# Equations can be found in the paper 
 ema_rise = []
 ema_fall = []
 
@@ -83,6 +91,7 @@ ema_fall_std = stdev(ema_fall)
 
 
 # MOM
+# Equations can be found in the paper
 mom_rise = []
 mom_fall = []
 
@@ -102,6 +111,7 @@ mom_fall_std = stdev(mom_fall)
 
 
 # STCK K%
+# Equations can be found in the paper
 kper_rise = []  
 kper_fall = []
 kper_full = []
@@ -134,6 +144,7 @@ kper_fall_std = stdev(kper_fall)
 
 
 # STCK d%
+# Equations can be found in the paper
 dper_rise = []  
 dper_fall = []
 
@@ -156,6 +167,7 @@ dper_fall_std = stdev(dper_fall)
 
 
 # MACD   
+# Equations can be found in the paper
 macd_rise = []
 macd_fall = []
 
@@ -178,6 +190,7 @@ macd_fall_std = stdev(macd_fall)
 
 
 # R%
+# Equations can be found in the paper
 rper_rise = []  
 rper_fall = []
 
@@ -209,6 +222,7 @@ rper_fall_std = stdev(rper_fall)
 
 
 # ADL
+# Equations can be found in the paper
 adl_rise = []  
 adl_fall = []
 
@@ -245,6 +259,7 @@ adl_fall_std = stdev(adl_fall)
 
 
 # CCI 
+# Equations can be found in the paper
 cci_rise = []  
 cci_fall = []
 
@@ -288,7 +303,7 @@ cci_fall_ave = mean(cci_fall)
 cci_fall_std = stdev(cci_fall)   
 
 # RSI
-
+# Equations can be found in the paper
 rsi_rise = []
 rsi_fall = []
 
@@ -316,10 +331,13 @@ rsi_fall_ave = mean(rsi_fall)
 rsi_fall_std = stdev(rsi_fall)
 
 
-
+# Function to determine the proability of a point belonging to a class using
+# a gaussian distribution
 def class_probability(x, mean, std):
     return (1 / (math.sqrt(2*math.pi) * std)) * math.exp(-(math.pow(x-mean,2)/(2*math.pow(std,2))))    
 
+
+# Use the model to make predictions for the test data set
 accuracy_sum = 0
 ema_full_new = [0]
 kper_full = [0, 0, 0]
@@ -327,7 +345,9 @@ adl = [0]
 typical_price = [0]
 moving_average = [0]
 for i in range(train_length, length):
-
+    
+    
+    # Compute class_probabilities for each attribute
     sma_sum = 0
     for j in range(1, 11):
         sma_sum = sma_sum + a.iloc[i - j, 4]
@@ -438,11 +458,13 @@ for i in range(train_length, length):
     rsi_rise_prob = class_probability(rsi, rsi_rise_ave, rsi_rise_std)
     rsi_fall_prob = class_probability(rsi, rsi_fall_ave, rsi_fall_std)
     
+    
+    # Compute the overall probability for a rise or fall
     prob_rise = sma_rise_prob*ema_rise_prob*mom_rise_prob*kper_rise_prob*dper_rise_prob*macd_rise_prob*rper_rise_prob*adl_rise_prob*cci_rise_prob*rsi_rise_prob*total_rise_prob
     prob_fall = sma_fall_prob*ema_fall_prob*mom_fall_prob*kper_fall_prob*dper_fall_prob*macd_fall_prob*rper_fall_prob*adl_fall_prob*cci_fall_prob*rsi_fall_prob*total_fall_prob
 
     
-    
+    # Compare the prediction with the actual to compute the accuracy
     if (prob_rise > prob_fall):
         if (a.iloc[i,4] - a.iloc[i,1] > 0):
             accuracy_sum = accuracy_sum + 1
@@ -455,14 +477,5 @@ print(total_rise_prob)
 print(total_fall_prob)
         
 accuracy = accuracy_sum/test_length
-print("The Accuracy is....", accuracy)
-     
-        
-        
-        
-        
-        
-        
-        
-    
+print("The accuracy is....", accuracy)
 
