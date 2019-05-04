@@ -32,3 +32,6 @@ The easiest way to build and run the neural network code is to install Visual St
 ## K-Means Clustering
 
 The easiest way to replicate our K-means clustering algorithm is to paste all of the individual python code files into a Jupyter notebook and then insert the database/file source of your choice into the pandas_read_file line and analysis it through that avenue using the examples and comments provided in the individual code files
+
+## Bayes Classifier
+The simple way to obtain results for the classifier is to load up the bayes_classifier_complete.py into a python environment. Once the script is loaded simply input the desired stock csv file into line 15. You will also have to change the path to the file and ensure that the stock file has been converted to a csv using the testToCSV.py script. Now simply run the code and the accuracy will be output. Run time varies depending on the size of the stock csv file. Program usually runs in about 45 seconds. 
